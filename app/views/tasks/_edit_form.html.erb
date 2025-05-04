@@ -1,0 +1,15 @@
+<%= form_with model: [task.project, task], data: { turbo_frame: dom_id(task) } do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+  <div>
+    <%= f.label :status %>
+    <%= f.select :status, Task.statuses.keys.map { |s| [s.titleize, s] } %>
+  </div>
+  <%= f.submit "Update Task" %>
+<% end %>

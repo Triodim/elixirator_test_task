@@ -1,7 +1,15 @@
 <h1>Projects</h1>
 
-<% if @projects.present? %>
-  <%= render @projects %>
-<% else %>
-  <p>No projects found.</p>
+<%= turbo_frame_tag "new_project_form" do %>
+  <%= render "form", project: Project.new %>
 <% end %>
+
+<div id="projects">
+  <%= turbo_frame_tag "projects" do %>
+    <% if @projects.present? %>
+      <%= render @projects %>
+    <% else %>
+      <p>No projects found.</p>
+    <% end %>
+  <% end %>
+</div>

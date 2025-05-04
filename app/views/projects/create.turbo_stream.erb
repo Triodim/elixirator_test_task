@@ -1,0 +1,2 @@
+<%= turbo_stream.prepend "projects", partial: "projects/project", locals: { project: @project } %>
+<%= turbo_stream.replace "new_project_form", partial: "form", locals: { project: Project.new } %>

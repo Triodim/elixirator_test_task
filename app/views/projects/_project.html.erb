@@ -1,6 +1,24 @@
-<div class="project">
+<div class="project" id="<%= dom_id(project) %>"  data-controller="toggle">
   <strong>ID:</strong> <%= project.id %><br>
+  <strong>Name:</strong> <%= project.name %><br>
   <strong>Description:</strong> <%= project.description %><br>
   <strong>Status:</strong> <%= project.status %><br>
+
+  <%= button_to "Delete", project_path(project),
+                method: :delete,
+                data: { turbo_confirm: "Are you sure?" },
+                form: { data: { turbo_frame: "_top" } } %>
+
+  <button data-action="click->toggle#toggle"
+          data-toggle-target="button"
+          data-show-label="Show Tasks"
+          data-hide-label="Hide Tasks">
+    Show Tasks
+  </button>
+
+  <div data-toggle-target="content" class="hidden">
+    <%= render "projects/task_list", tasks: project.tasks.active, project: project %>
+  </div>
+
   <hr>
 </div>
